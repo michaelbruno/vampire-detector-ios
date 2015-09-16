@@ -14,6 +14,10 @@
 		E41EE0351B7E5F9000A92970 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E41EE0341B7E5F9000A92970 /* Images.xcassets */; };
 		E41EE0381B7E5F9000A92970 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = E41EE0361B7E5F9000A92970 /* LaunchScreen.xib */; };
 		E41EE0441B7E5F9000A92970 /* VampireDetectorTests.m in Sources */ = {isa = PBXBuildFile; fileRef = E41EE0431B7E5F9000A92970 /* VampireDetectorTests.m */; };
+		E41EE0501B7E603800A92970 /* MainActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E41EE04F1B7E603800A92970 /* MainActivityViewController.m */; };
+		E41EE0531B7E60CC00A92970 /* ApplicationControl.m in Sources */ = {isa = PBXBuildFile; fileRef = E41EE0521B7E60CC00A92970 /* ApplicationControl.m */; };
+		E41EE0561B7E61F600A92970 /* VisionActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E41EE0551B7E61F600A92970 /* VisionActivityViewController.m */; };
+		E41EE0591B7E624900A92970 /* VisionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E41EE0581B7E624900A92970 /* VisionViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +44,14 @@
 		E41EE03D1B7E5F9000A92970 /* VampireDetectorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = VampireDetectorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E41EE0421B7E5F9000A92970 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E41EE0431B7E5F9000A92970 /* VampireDetectorTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VampireDetectorTests.m; sourceTree = "<group>"; };
+		E41EE04E1B7E602A00A92970 /* MainActivityViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MainActivityViewController.h; sourceTree = "<group>"; };
+		E41EE04F1B7E603800A92970 /* MainActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainActivityViewController.m; sourceTree = "<group>"; };
+		E41EE0511B7E60BD00A92970 /* ApplicationControl.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ApplicationControl.h; sourceTree = "<group>"; };
+		E41EE0521B7E60CC00A92970 /* ApplicationControl.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ApplicationControl.m; sourceTree = "<group>"; };
+		E41EE0541B7E61BC00A92970 /* VisionActivityViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VisionActivityViewController.h; sourceTree = "<group>"; };
+		E41EE0551B7E61F600A92970 /* VisionActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VisionActivityViewController.m; sourceTree = "<group>"; };
+		E41EE0571B7E623700A92970 /* VisionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VisionViewController.h; sourceTree = "<group>"; };
+		E41EE0581B7E624900A92970 /* VisionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VisionViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +101,14 @@
 				E41EE0341B7E5F9000A92970 /* Images.xcassets */,
 				E41EE0361B7E5F9000A92970 /* LaunchScreen.xib */,
 				E41EE0271B7E5F9000A92970 /* Supporting Files */,
+				E41EE04E1B7E602A00A92970 /* MainActivityViewController.h */,
+				E41EE04F1B7E603800A92970 /* MainActivityViewController.m */,
+				E41EE0511B7E60BD00A92970 /* ApplicationControl.h */,
+				E41EE0521B7E60CC00A92970 /* ApplicationControl.m */,
+				E41EE0541B7E61BC00A92970 /* VisionActivityViewController.h */,
+				E41EE0551B7E61F600A92970 /* VisionActivityViewController.m */,
+				E41EE0571B7E623700A92970 /* VisionViewController.h */,
+				E41EE0581B7E624900A92970 /* VisionViewController.m */,
 			);
 			path = VampireDetector;
 			sourceTree = "<group>";
@@ -168,6 +188,7 @@
 				TargetAttributes = {
 					E41EE0231B7E5F9000A92970 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = LQD82J8N4K;
 					};
 					E41EE03C1B7E5F9000A92970 = {
 						CreatedOnToolsVersion = 6.4;
@@ -219,6 +240,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E41EE0531B7E60CC00A92970 /* ApplicationControl.m in Sources */,
+				E41EE0561B7E61F600A92970 /* VisionActivityViewController.m in Sources */,
+				E41EE0591B7E624900A92970 /* VisionViewController.m in Sources */,
+				E41EE0501B7E603800A92970 /* MainActivityViewController.m in Sources */,
 				E41EE0301B7E5F9000A92970 /* ViewController.m in Sources */,
 				E41EE02D1B7E5F9000A92970 /* AppDelegate.m in Sources */,
 				E41EE02A1B7E5F9000A92970 /* main.m in Sources */,
@@ -349,6 +374,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = VampireDetector/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -359,6 +385,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = VampireDetector/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -418,6 +445,7 @@
 				E41EE0491B7E5F9000A92970 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E41EE04A1B7E5F9000A92970 /* Build configuration list for PBXNativeTarget "VampireDetectorTests" */ = {
 			isa = XCConfigurationList;
@@ -426,6 +454,7 @@
 				E41EE04C1B7E5F9000A92970 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
