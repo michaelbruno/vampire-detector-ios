@@ -45,12 +45,9 @@
     pixels = malloc((1280 * 720) * sizeof(int));
     detectionPixels = malloc((1280 * 720) * sizeof(int));
     
-    //DisplayMetrics metrics = Resources.getSystem().getDisplayMetrics();
-    
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     CGFloat screenWidth = screenRect.size.width;
     CGFloat screenHeight = screenRect.size.height;
-    
     
     swidth = (int)screenWidth;
     sheight = (int)screenHeight;
@@ -60,62 +57,12 @@
     
     NSLog(@"Screen aspect is %f, width:%d x height:%d", aspect, swidth, sheight);
     
-    // AVCaptureDevice *inputDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+   // displayBounds = CGRectMake(0,0,(multi * cwidth),sheight);
+    displayBounds[0] = 0;
+    displayBounds[1] = 0;
+    displayBounds[2] = multi * cwidth;
+    displayBounds[3] = sheight;
     
-    
-    displayBounds = CGRectMake(0,0,(multi * cwidth),sheight);
-    
-    //Camera camera = Camera.open();
-    //Camera.Parameters params = camera.getParameters();
-    
-    
-    /*
-     List<Camera.Size> sizes = params.getSupportedPreviewSizes();
-     Camera.Size previewSize = null;
-     
-     List<Integer> formats = params.getSupportedPreviewFormats();
-     for(Integer f:formats){
-     Log.d(getClass().getName(), "Prewview Format:"+f+"");
-     }
-     
-     for(int k=0;k<sizes.size();k++){
-     
-     float ap = (float)sizes.get(k).width/(float)sizes.get(k).height;
-     Log.d(getClass().getName(),  + sizes.get(k).width + "x" + sizes.get(k).height + ":" + ap);
-     if(swidth > sizes.get(k).width
-     && sheight > sizes.get(k).height
-     && ap>aspect){
-     
-     previewSize = sizes.get(k);
-     break;
-     }
-     }
-     
-     if(previewSize==null){
-     previewSize=sizes.get(0);
-     }
-     
-     cwidth = previewSize.width;
-     cheight = previewSize.height;
-     
-     Log.d(getClass().getSimpleName(), "Camera preview set to "+cwidth +"x"+cheight);
-     
-     
-     int previewFormat = ImageFormat.getBitsPerPixel(camera.getParameters().getPreviewFormat());
-     int frameSize = cwidth * cheight;
-     pixels = new int[frameSize];
-     bounds[0] = (int)(cwidth*FDCLIP_LEFT);
-     bounds[1] = (int)(cheight*FDCLIP_TOP);
-     bounds[2] = (int)(cwidth*(1 - FDCLIP_RIGHT));
-     bounds[3] = (int)(cheight*(1 - FDCLIP_BOTTOM));
-     
-     Log.d(getClass().getSimpleName(),"Detection bounds: " +bounds[0] +"," +bounds[1] +
-     " " +bounds[2]+","+bounds[3]);
-     detectionPixels = new int[(bounds[2] - bounds[0]) * (bounds[3] - bounds[1])];
-     bufferSize = ((frameSize * previewFormat)/8);
-     
-     camera.release();
-     */
     NSLog(@"returning self!");
     
     return self;

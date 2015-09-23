@@ -8,6 +8,9 @@
 
 @import UIKit;
 
+
+const float focusRate = 5.0;
+
 @interface ApplicationControl : NSObject {
     
 @public int *pixels;
@@ -25,6 +28,10 @@
 @public int bufferSize;
 @public float dx;
 @public float dy;
+@public float curx;
+@public float cury;
+@public float lastx;
+@public float lasty;
 @public float dist;
 @public float facexCenter;
 @public float faceyCenter;
@@ -36,7 +43,8 @@
 @public float FDCLIP_BOTTOM; // = 0.20f;
 @public int bounds[4];
 @public float multi;
-@public CGRect displayBounds;
+@public float displayBounds[4];
+//@public CGRect displayBounds;
     
 }
 

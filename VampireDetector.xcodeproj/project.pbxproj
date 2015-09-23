@@ -18,6 +18,7 @@
 		E41EE0531B7E60CC00A92970 /* ApplicationControl.m in Sources */ = {isa = PBXBuildFile; fileRef = E41EE0521B7E60CC00A92970 /* ApplicationControl.m */; };
 		E41EE0561B7E61F600A92970 /* VisionActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E41EE0551B7E61F600A92970 /* VisionActivityViewController.m */; };
 		E41EE0591B7E624900A92970 /* VisionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E41EE0581B7E624900A92970 /* VisionViewController.m */; };
+		E49E61091BAC4D7F00ED1DA7 /* RecticleUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E61081BAC4D7F00ED1DA7 /* RecticleUIView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,8 @@
 		E41EE0551B7E61F600A92970 /* VisionActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VisionActivityViewController.m; sourceTree = "<group>"; };
 		E41EE0571B7E623700A92970 /* VisionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VisionViewController.h; sourceTree = "<group>"; };
 		E41EE0581B7E624900A92970 /* VisionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VisionViewController.m; sourceTree = "<group>"; };
+		E49E61071BAC4D6A00ED1DA7 /* RecticleUIView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecticleUIView.h; sourceTree = "<group>"; };
+		E49E61081BAC4D7F00ED1DA7 /* RecticleUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecticleUIView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +112,8 @@
 				E41EE0551B7E61F600A92970 /* VisionActivityViewController.m */,
 				E41EE0571B7E623700A92970 /* VisionViewController.h */,
 				E41EE0581B7E624900A92970 /* VisionViewController.m */,
+				E49E61071BAC4D6A00ED1DA7 /* RecticleUIView.h */,
+				E49E61081BAC4D7F00ED1DA7 /* RecticleUIView.m */,
 			);
 			path = VampireDetector;
 			sourceTree = "<group>";
@@ -247,6 +252,7 @@
 				E41EE0301B7E5F9000A92970 /* ViewController.m in Sources */,
 				E41EE02D1B7E5F9000A92970 /* AppDelegate.m in Sources */,
 				E41EE02A1B7E5F9000A92970 /* main.m in Sources */,
+				E49E61091BAC4D7F00ED1DA7 /* RecticleUIView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

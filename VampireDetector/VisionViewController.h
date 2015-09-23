@@ -11,13 +11,12 @@
 @import AVFoundation;
 @import UIKit;
 
-float focusRate = 5.0;
-
 @interface VisionViewController : GLKViewController
 <AVCaptureVideoDataOutputSampleBufferDelegate>{
     
     AVCaptureSession *captureSession;
     CIContext *coreImageContext;
+    CGContextRef ctx;
     GLuint renderBuffer;
     GLKView *cameraView;
     EAGLContext *eaglContext;
@@ -25,6 +24,9 @@ float focusRate = 5.0;
     CIDetector *faceDetector;
     dispatch_queue_t detectionBackgroundQueue;
     CIFaceFeature *face;
+    CALayer *recticleLayer;
+    CGRect displayBounds;
+    CGColorSpaceRef colorSpace; 
     int frameNumber;
     
 }

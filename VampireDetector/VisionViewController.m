@@ -20,6 +20,10 @@
     
     detectionBackgroundQueue = dispatch_queue_create("com.apollonarius.vampiredetector.facedetection", NULL);
     
+    displayBounds = CGRectMake(0,0,ac->displayBounds[2],ac->displayBounds[3]);
+    
+    colorSpace = CGColorSpaceCreateDeviceRGB();
+    
     NSLog(@"AAA");
     faceDetector = [CIDetector detectorOfType:CIDetectorTypeFace
                     context:nil options:[NSDictionary
@@ -37,8 +41,26 @@
     NSLog(@"two");
     [EAGLContext setCurrentContext:eaglContext];
     
+    ctx = CGBitmapContextCreate(NULL,
+                                1280, //cameraView.bounds.size.width,
+                                720, //cameraView.bounds.size.height,
+                                8,
+                                0,
+                                colorSpace,
+                                (CGBitmapInfo)kCGImageAlphaPremultipliedFirst);
+    
     captureSession = [AVCaptureSession new];
     AVCaptureDevice *videoDevice = [AVCaptureDevice defaultDeviceWithMediaType:AVMediaTypeVideo];
+    
+   // this doesn't seem to work, so mysterious
+    [videoDevice lockForConfiguration:nil];
+   // [videoDevice setActiveVideoMinFrameDuration:CMTimeMake(1, 1)];
+   // [videoDevice setActiveVideoMaxFrameDuration:CMTimeMake(1, 1)];
+    videoDevice.activeVideoMaxFrameDuration = CMTimeMake(1, 15);
+    videoDevice.activeVideoMinFrameDuration = CMTimeMake(1, 15);
+    [videoDevice unlockForConfiguration];
+
+    
     NSError *error = nil;
     AVCaptureDeviceInput *videoInput = [AVCaptureDeviceInput deviceInputWithDevice:videoDevice error:&error];
     
@@ -57,16 +79,12 @@
     [captureSession beginConfiguration];
     [captureSession setSessionPreset:AVCaptureSessionPreset1280x720];
     
+    
     AVCaptureVideoDataOutput *videoOutput = [AVCaptureVideoDataOutput new];
     NSDictionary *newSettings =@{ (NSString *)kCVPixelBufferPixelFormatTypeKey : @(kCVPixelFormatType_32BGRA) };
     videoOutput.videoSettings = newSettings;
     [videoOutput setAlwaysDiscardsLateVideoFrames:YES];
-    
-    
-    
-    // create a serial dispatch queue used for the sample buffer delegate as well as when a still image is captured
-    // a serial dispatch queue must be used to guarantee that video frames will be delivered in order
-    // see the header doc for setSampleBufferDelegate:queue: for more information
+
     dispatch_queue_t videoOutputQueue = dispatch_queue_create("VideoDataOutputQueue", DISPATCH_QUEUE_SERIAL);
     [videoOutput setSampleBufferDelegate:self queue:videoOutputQueue];
     
@@ -79,6 +97,15 @@
     
     [captureSession commitConfiguration];
     
+    //recticleLayer = [CALayer layer];
+    //recticleLayer.name = @"rtemp";
+    //recticleLayer.delegate = self;
+    //recticleLayer.frame = cameraView.bounds;
+    //recticleLayer.backgroundColor = [UIColor greenColor].CGColor;
+    
+    //[[cameraView layer] addSublayer:recticleLayer];
+    //[recticleLayer setNeedsDisplay];
+    
     NSLog(@"AV Capture Session Configured");
     [captureSession startRunning];
     NSLog(@"AV CAaputre Session Running");
@@ -88,7 +115,7 @@
 -(void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
     
 
-    NSLog(@"***START processing frame %d", frameNumber);
+   // NSLog(@"***START processing frame %d", frameNumber);
     
     
     if ([connection isVideoOrientationSupported]){
@@ -98,34 +125,9 @@
     CVPixelBufferRef pixelBuffer = (CVPixelBufferRef)CMSampleBufferGetImageBuffer(sampleBuffer);
     CIImage *image = [CIImage imageWithCVPixelBuffer:pixelBuffer];
     
-    /*
-    float ox = image.extent.origin.x;
-    float oy = image.extent.origin.y;
-    
-    float oh = image.extent.size.height;
-    float ow = image.extent.size.width;
-    
-    NSLog(@"Image stuff A %f , %f", ox,oy);
-    NSLog(@"Image stuff B %f x %f", oh,ow);
-    */
-  /*
-     image = [CIFilter filterWithName:@"CIFalseColor" keysAndValues: kCIInputImageKey, image, @"inputColor0",
-     [CIColor colorWithRed:0.0 green:0.2 blue:0.0], @"inputColor1",
-     [CIColor colorWithRed:0.0 green:0.0 blue:1.0], nil].outputImage;
-    
-     CGImageRef completedImage = [self processFrame:image];
-     */
-    
-    
     image = [self processFrame:image];
     
-    [coreImageContext drawImage:image inRect:ac->displayBounds fromRect:[image extent] ];
-    //[cameraView display];
-    
-    //[image release];
-    //CGContextDrawImage(self.context,cameraView.bounds,completedImage);
-    //[self.context presentRenderbuffer:GL_RENDERBUFFER];
-    NSLog(@"***END processing frame %d", frameNumber);
+    [coreImageContext drawImage:image inRect:displayBounds fromRect:[image extent] ];
     
     frameNumber++;
 }
@@ -143,6 +145,9 @@
     }
     
     eaglContext = nil;
+    
+    CGColorSpaceRelease(colorSpace);
+    CGContextRelease(ctx);
     
     //dispatch_release(detectionBackgroundQueue);
 }
@@ -176,23 +181,25 @@
         
                 ac->detected = true;
                 ac->detectionState++;
+                
+                CIFaceFeature *feature = [features objectAtIndex:0];
         
-                for(CIFaceFeature *feature in features){
-            
-                    if(feature.hasLeftEyePosition && feature.hasRightEyePosition){
-                        float xlength = fabsf(feature.leftEyePosition.x - feature.rightEyePosition.x);
-                        float ylength = fabsf(feature.leftEyePosition.y - feature.rightEyePosition.y);
+                //for(CIFaceFeature *feature in features){
+                // }
+                if(feature.hasLeftEyePosition && feature.hasRightEyePosition){
+                    float xlength = fabsf(feature.leftEyePosition.x - feature.rightEyePosition.x);
+                    float ylength = fabsf(feature.leftEyePosition.y - feature.rightEyePosition.y);
                 
-                        ac->dist = sqrt(pow(xlength,2.0) + pow(ylength,2.0));
+                    ac->dist = sqrt(pow(xlength,2.0) + pow(ylength,2.0));
                         
-                        ac->facexCenter = feature.leftEyePosition.x + xlength/2;
-                        ac->faceyCenter = feature.leftEyePosition.y + ylength/2;
+                    ac->facexCenter = feature.leftEyePosition.x + xlength/2;
+                    ac->faceyCenter = feature.leftEyePosition.y + ylength/2;
                         
-                        face = feature;
+                    face = feature;
                 
-                        NSLog(@"Good Face!!!");
-                    }
+                    NSLog(@"Good Face!!!");
                 }
+                //}
             }else{
                 NSLog(@"No Face Detected!!!");
                 ac->detected = false;
@@ -200,7 +207,34 @@
             }
             
             ac->detectionActive = false;
-        
+            
+            ac->lastx = ac->swidth/2;
+            ac->lasty = ac->sheight/2;
+            
+            ac->curx = ((ac->dx - ac->lastx) * (-.2f)) + ac->dx;
+            ac->cury = ((ac->dy - ac->lasty) * (-.2f)) + ac->dy;
+            
+            if((ac->dx - ac->lastx)<=-focusRate){
+                ac->curx = ac->lastx - focusRate;
+            }else if(ac->dx - ac->lastx>=focusRate){
+                ac->curx = ac->lastx + focusRate;
+            }else{
+                ac->curx = ac->dx;
+            }
+            
+            if((ac->dy - ac->lasty)<=-focusRate){
+                ac->cury = ac->lasty - focusRate;
+            }else if(ac->dy - ac->lasty>=focusRate){
+                ac->cury = ac->lasty + focusRate;
+            }else{
+                ac->cury = ac->dy;
+            }
+            
+            if (ac->detectionState > 8) {
+                ac->detectionState = 8;
+            }else if(ac->detectionState < 0){
+                ac->detectionState = 0;
+            }
         });
     }
     // apply initial filters
@@ -209,117 +243,53 @@
              [CIColor colorWithRed:0.0 green:0.0 blue:0.0], @"inputColor1",
              [CIColor colorWithRed:1.0 green:0.0 blue:0.0], nil].outputImage;
     
-    float lastx = ac->swidth/2;
-    float lasty = ac->sheight/2;
-    float curx = 0;
-    float cury = 0;
+   // UIView *recticleView = [self.parentViewController.view viewWithTag:555];
+   // [recticleView performSelectorOnMainThread:@selector(setNeedsDisplay) withObject:nil waitUntilDone:NO];
     
-    if (ac->detectionState > 8) {
-        ac->detectionState = 8;
-    }
     
-    if (ac->detected || ac->detectionState>0) {
-        NSLog(@"drawing face");
+    if (ac->detected && ac->detectionState>0) {
         
         CGImageRef imageRef = [coreImageContext createCGImage:image fromRect:[image extent]];
         
-        /*
-        size_t width = CGImageGetWidth(img);
-        size_t height = CGImageGetHeight(img);
-        size_t bitsPerComponent = CGImageGetBitsPerComponent(img);
-        size_t bytesPerRow = CGImageGetBytesPerRow(img);
-        */
-        // try to smooth detection a little bit
         
-        NSLog(@"1. curx: %f cury: %f",curx,cury);
+        //CGContextRef ctx = CGBitmapContextCreate(NULL,
+        //                                         CGImageGetWidth(imageRef),
+        //                                         CGImageGetHeight(imageRef),
+        //                                         CGImageGetBitsPerComponent(imageRef),
+        //                                         CGImageGetBytesPerRow(imageRef),
+        //                                         colorSpace,
+        //                                         (CGBitmapInfo)CGImageGetAlphaInfo(imageRef));
         
-        curx = ((ac->dx - lastx) * (-.2f)) + ac->dx;
-        cury = ((ac->dy - lasty) * (-.2f)) + ac->dy;
-        
-        NSLog(@"2. curx: %f cury: %f",curx,cury);
-        
-        if((ac->dx - lastx)<=-focusRate){
-            curx = lastx - focusRate;
-        }else if(ac->dx - lastx>=focusRate){
-            curx = lastx + focusRate;
-        }else{
-            curx = ac->dx;
-        }
-        
-        if((ac->dy - lasty)<=-focusRate){
-            cury = lasty - focusRate;
-        }else if(ac->dy - lasty>=focusRate){
-            cury = lasty + focusRate;
-        }else{
-            cury = ac->dy;
-        }
-        
-        NSLog(@"3. curx: %f cury: %f",curx,cury);
-        
-        float nd = ac->dist * 3;
-
-        // c.drawCircle(curx, cury, 5.0f, facePaint);
-        // c.drawCircle(curx, cury, (ac.dist * 3), facePaint);
-        
-        
-        //CGRect faceRect = face.bounds;
-        //NSLog(@"bounds h: %f x w: %f",face.bounds.size.height, face.bounds.size.width);
-
-        CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-        CGContextRef ctx = CGBitmapContextCreate(NULL,
-                                                 CGImageGetWidth(imageRef),
-                                                 CGImageGetHeight(imageRef),
-                                                 CGImageGetBitsPerComponent(imageRef),
-                                                 CGImageGetBytesPerRow(imageRef),
-                                                 colorSpace,
-                                                 (CGBitmapInfo)CGImageGetAlphaInfo(imageRef));
-        /* oh well...
-        CGContextRef ctx = CGBitmapContextCreate(NULL,
-                                                 image.extent.size.width,
-                                                 image.extent.size.height,
-                                                 CGImageGetBitsPerComponent(imageRef),
-                                                 CGImageGetBytesPerRow(imageRef),
-                                                 colorSpace,
-                                                 (CGBitmapInfo)CGImageGetAlphaInfo(imageRef));
-        */
         
         CGContextDrawImage(ctx, image.extent, imageRef);
         
         CGContextSetLineWidth(ctx, 5.0);
         CGContextSetStrokeColorWithColor(ctx, [UIColor whiteColor].CGColor);
-       // CGContextAddRect(ctx, faceRect);
-       // CGContextDrawPath(ctx, kCGPathStroke);
 
-        
-        CGContextAddArc(ctx, ac->facexCenter, ac->faceyCenter, (ac->dist * 3), 0, 359, 0);
+        CGContextAddArc(ctx, ac->facexCenter, ac->faceyCenter, (ac->dist * 2.5), 0, 359, 0);
         CGContextStrokePath(ctx);
         
+        /*
         //textPaint.setTextSize(ac.dist);
-        if(fabsf(ac->dx - curx)<(2*focusRate) && fabsf(ac->dy - cury)<(2*focusRate)) {
+        if(fabsf(ac->dx - ac->curx)<(2*focusRate) && fabsf(ac->dy - ac->cury)<(2*focusRate)) {
             // because there is no such thing as vampires... right?
             //c.drawText("HUMAN", (curx - ac.dist), (cury + (ac.dist * 4)), textPaint);
             NSLog(@"Supposed to draw text here!");
         }
+        */
         
-        lastx = curx;
-        lasty = cury;
+        ac->lastx = ac->curx;
+        ac->lasty = ac->cury;
         
         CGImageRef imageRefFinal = CGBitmapContextCreateImage(ctx);
-
         image = [CIImage imageWithCGImage:imageRefFinal];
         
         CGImageRelease(imageRef);
         CGImageRelease(imageRefFinal);
-        CGColorSpaceRelease(colorSpace);
-        CGContextRelease(ctx);
-   
+
         
-    }else{
-         NSLog(@"NOT drawing face");
     }
     ac->displayState = 1;
-    
-
     
     return image;
     
@@ -327,6 +297,89 @@
 
 
 
-
 @end
+
+
+/* block
+ 
+ NSLog(@"drawing face");
+ 
+ CGImageRef imageRef = [coreImageContext createCGImage:image fromRect:[image extent]];
+ // try to smooth detection a little bit
+ 
+ ac->curx = ((ac->dx - ac->lastx) * (-.2f)) + ac->dx;
+ ac->cury = ((ac->dy - ac->lasty) * (-.2f)) + ac->dy;
+ 
+ //NSLog(@"2. curx: %f cury: %f",curx,cury);
+ 
+ if((ac->dx - ac->lastx)<=-focusRate){
+ ac->curx = ac->lastx - focusRate;
+ }else if(ac->dx - ac->lastx>=focusRate){
+ ac->curx = ac->lastx + focusRate;
+ }else{
+ ac->curx = ac->dx;
+ }
+ 
+ if((ac->dy - ac->lasty)<=-focusRate){
+ ac->cury = ac->lasty - focusRate;
+ }else if(ac->dy - ac->lasty>=focusRate){
+ ac->cury = ac->lasty + focusRate;
+ }else{
+ ac->cury = ac->dy;
+ }
+ 
+ //NSLog(@"3. curx: %f cury: %f",curx,cury);
+ 
+ float nd = ac->dist * 3;
+ 
+ // c.drawCircle(curx, cury, 5.0f, facePaint);
+ // c.drawCircle(curx, cury, (ac.dist * 3), facePaint);
+ 
+ 
+ //CGRect faceRect = face.bounds;
+ //NSLog(@"bounds h: %f x w: %f",face.bounds.size.height, face.bounds.size.width);
+ 
+ CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+ CGContextRef ctx = CGBitmapContextCreate(NULL,
+ CGImageGetWidth(imageRef),
+ CGImageGetHeight(imageRef),
+ CGImageGetBitsPerComponent(imageRef),
+ CGImageGetBytesPerRow(imageRef),
+ colorSpace,
+ (CGBitmapInfo)CGImageGetAlphaInfo(imageRef));
+
+
+CGContextDrawImage(ctx, image.extent, imageRef);
+
+CGContextSetLineWidth(ctx, 5.0);
+CGContextSetStrokeColorWithColor(ctx, [UIColor whiteColor].CGColor);
+// CGContextAddRect(ctx, faceRect);
+// CGContextDrawPath(ctx, kCGPathStroke);
+
+
+CGContextAddArc(ctx, ac->facexCenter, ac->faceyCenter, (ac->dist * 3), 0, 359, 0);
+CGContextStrokePath(ctx);
+
+//textPaint.setTextSize(ac.dist);
+if(fabsf(ac->dx - ac->curx)<(2*focusRate) && fabsf(ac->dy - ac->cury)<(2*focusRate)) {
+    // because there is no such thing as vampires... right?
+    //c.drawText("HUMAN", (curx - ac.dist), (cury + (ac.dist * 4)), textPaint);
+    NSLog(@"Supposed to draw text here!");
+}
+
+ac->lastx = ac->curx;
+ac->lasty = ac->cury;
+
+CGImageRef imageRefFinal = CGBitmapContextCreateImage(ctx);
+
+//recticleLayer.contents = (__bridge id)imageRefFinal;
+
+//image = [CIImage imageWithCGImage:imageRefFinal];
+
+CGImageRelease(imageRef);
+CGImageRelease(imageRefFinal);
+CGColorSpaceRelease(colorSpace);
+CGContextRelease(ctx);
+
+*/
 
