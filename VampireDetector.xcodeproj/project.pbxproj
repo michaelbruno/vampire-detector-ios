@@ -19,6 +19,7 @@
 		E41EE0561B7E61F600A92970 /* VisionActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E41EE0551B7E61F600A92970 /* VisionActivityViewController.m */; };
 		E41EE0591B7E624900A92970 /* VisionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E41EE0581B7E624900A92970 /* VisionViewController.m */; };
 		E49E61091BAC4D7F00ED1DA7 /* RecticleUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E61081BAC4D7F00ED1DA7 /* RecticleUIView.m */; };
+		E49E610B1BB2FD7300ED1DA7 /* FaceDetectionThread.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E610A1BB2FD7300ED1DA7 /* FaceDetectionThread.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -55,6 +56,7 @@
 		E41EE0581B7E624900A92970 /* VisionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VisionViewController.m; sourceTree = "<group>"; };
 		E49E61071BAC4D6A00ED1DA7 /* RecticleUIView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecticleUIView.h; sourceTree = "<group>"; };
 		E49E61081BAC4D7F00ED1DA7 /* RecticleUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecticleUIView.m; sourceTree = "<group>"; };
+		E49E610A1BB2FD7300ED1DA7 /* FaceDetectionThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceDetectionThread.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 				E41EE0581B7E624900A92970 /* VisionViewController.m */,
 				E49E61071BAC4D6A00ED1DA7 /* RecticleUIView.h */,
 				E49E61081BAC4D7F00ED1DA7 /* RecticleUIView.m */,
+				E49E610A1BB2FD7300ED1DA7 /* FaceDetectionThread.m */,
 			);
 			path = VampireDetector;
 			sourceTree = "<group>";
@@ -251,6 +254,7 @@
 				E41EE0501B7E603800A92970 /* MainActivityViewController.m in Sources */,
 				E41EE0301B7E5F9000A92970 /* ViewController.m in Sources */,
 				E41EE02D1B7E5F9000A92970 /* AppDelegate.m in Sources */,
+				E49E610B1BB2FD7300ED1DA7 /* FaceDetectionThread.m in Sources */,
 				E41EE02A1B7E5F9000A92970 /* main.m in Sources */,
 				E49E61091BAC4D7F00ED1DA7 /* RecticleUIView.m in Sources */,
 			);
