@@ -19,7 +19,7 @@
 		E41EE0561B7E61F600A92970 /* VisionActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E41EE0551B7E61F600A92970 /* VisionActivityViewController.m */; };
 		E41EE0591B7E624900A92970 /* VisionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E41EE0581B7E624900A92970 /* VisionViewController.m */; };
 		E49E61091BAC4D7F00ED1DA7 /* RecticleUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E61081BAC4D7F00ED1DA7 /* RecticleUIView.m */; };
-		E49E610B1BB2FD7300ED1DA7 /* FaceDetectionThread.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E610A1BB2FD7300ED1DA7 /* FaceDetectionThread.m */; };
+		E49E610D1BBC25D400ED1DA7 /* enochian-v7.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E49E610C1BBC25D400ED1DA7 /* enochian-v7.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,7 +56,7 @@
 		E41EE0581B7E624900A92970 /* VisionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VisionViewController.m; sourceTree = "<group>"; };
 		E49E61071BAC4D6A00ED1DA7 /* RecticleUIView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecticleUIView.h; sourceTree = "<group>"; };
 		E49E61081BAC4D7F00ED1DA7 /* RecticleUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecticleUIView.m; sourceTree = "<group>"; };
-		E49E610A1BB2FD7300ED1DA7 /* FaceDetectionThread.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceDetectionThread.m; sourceTree = "<group>"; };
+		E49E610C1BBC25D400ED1DA7 /* enochian-v7.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "enochian-v7.ttf"; path = "../../../androidws/vampire-detector/app/src/main/assets/enochian-v7.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +103,7 @@
 				E41EE02E1B7E5F9000A92970 /* ViewController.h */,
 				E41EE02F1B7E5F9000A92970 /* ViewController.m */,
 				E41EE0311B7E5F9000A92970 /* Main.storyboard */,
+				E49E610C1BBC25D400ED1DA7 /* enochian-v7.ttf */,
 				E41EE0341B7E5F9000A92970 /* Images.xcassets */,
 				E41EE0361B7E5F9000A92970 /* LaunchScreen.xib */,
 				E41EE0271B7E5F9000A92970 /* Supporting Files */,
@@ -116,7 +117,6 @@
 				E41EE0581B7E624900A92970 /* VisionViewController.m */,
 				E49E61071BAC4D6A00ED1DA7 /* RecticleUIView.h */,
 				E49E61081BAC4D7F00ED1DA7 /* RecticleUIView.m */,
-				E49E610A1BB2FD7300ED1DA7 /* FaceDetectionThread.m */,
 			);
 			path = VampireDetector;
 			sourceTree = "<group>";
@@ -191,7 +191,7 @@
 		E41EE01C1B7E5F9000A92970 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0640;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Apollonarius;
 				TargetAttributes = {
 					E41EE0231B7E5F9000A92970 = {
@@ -230,6 +230,7 @@
 			files = (
 				E41EE0331B7E5F9000A92970 /* Main.storyboard in Resources */,
 				E41EE0381B7E5F9000A92970 /* LaunchScreen.xib in Resources */,
+				E49E610D1BBC25D400ED1DA7 /* enochian-v7.ttf in Resources */,
 				E41EE0351B7E5F9000A92970 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -254,7 +255,6 @@
 				E41EE0501B7E603800A92970 /* MainActivityViewController.m in Sources */,
 				E41EE0301B7E5F9000A92970 /* ViewController.m in Sources */,
 				E41EE02D1B7E5F9000A92970 /* AppDelegate.m in Sources */,
-				E49E610B1BB2FD7300ED1DA7 /* FaceDetectionThread.m in Sources */,
 				E41EE02A1B7E5F9000A92970 /* main.m in Sources */,
 				E49E61091BAC4D7F00ED1DA7 /* RecticleUIView.m in Sources */,
 			);
@@ -319,6 +319,7 @@
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -334,7 +335,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -372,7 +373,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -385,9 +386,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = VampireDetector/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apollonarius.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -396,9 +400,12 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = VampireDetector/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apollonarius.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -406,16 +413,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = VampireDetectorTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apollonarius.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VampireDetector.app/VampireDetector";
 			};
@@ -425,12 +430,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = VampireDetectorTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.apollonarius.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/VampireDetector.app/VampireDetector";
 			};

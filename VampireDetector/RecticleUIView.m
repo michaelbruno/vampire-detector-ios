@@ -57,7 +57,7 @@
         CGContextStrokePath(ctx);
     
     //textPaint.setTextSize(ac.dist);
-        if(fabsf(ac->dx - ac->curx)<(2*focusRate) && fabsf(ac->dy - ac->cury)<(2*focusRate)) {
+        if(fabsf(ac->dx - ac->curx)<(2*FOCUSRATE) && fabsf(ac->dy - ac->cury)<(2*FOCUSRATE)) {
         // because there is no such thing as vampires... right?
         //c.drawText("HUMAN", (curx - ac.dist), (cury + (ac.dist * 4)), textPaint);
             NSLog(@"Supposed to draw text here!");

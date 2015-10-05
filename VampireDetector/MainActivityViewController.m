@@ -17,13 +17,26 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    NSLog(@"Starting load!");
+    //make button round to match android version
     
-    //ApplicationControl *ac = [ApplicationControl getInstance];
+    UIButton *startButton = (UIButton *)[self.view viewWithTag:256];
+    startButton.layer.cornerRadius = self.view.frame.size.height * 0.15 * 0.5;
     
-    NSLog(@"Finsished loading!");
-    NSLog(@"no really!");
 }
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    UIImageView *wheelImage = (UIImageView *)[self.view viewWithTag:257];
+    CGAffineTransform spin = CGAffineTransformRotate(wheelImage.transform, M_PI_2);
+    
+    [UIView animateWithDuration:10.0f delay:0.0 options:UIViewAnimationOptionCurveLinear  | UIViewAnimationOptionRepeat
+                     animations:^{
+                         wheelImage.transform = spin;
+                     }
+                     completion:nil];
+}
+
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];

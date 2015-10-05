@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="enochian-v7.ttf">
+            <string>Enochian</string>
+            <string>Enochian</string>
+            <string>Enochian</string>
+        </mutableArray>
+    </customFonts>
     <scenes>
         <!--MainActivityViewController-->
         <scene sceneID="tne-QT-ifu">
@@ -18,15 +26,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main" translatesAutoresizingMaskIntoConstraints="NO" id="QCz-mC-Gnq" userLabel="MainWheel">
+                            <imageView userInteractionEnabled="NO" tag="257" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="main" translatesAutoresizingMaskIntoConstraints="NO" id="QCz-mC-Gnq" userLabel="MainWheel">
                                 <rect key="frame" x="60" y="60" width="480" height="480"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="QCz-mC-Gnq" secondAttribute="height" multiplier="1:1" id="M5R-AR-MhX"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pBz-Mp-jr2" userLabel="StartButton">
-                                <rect key="frame" x="284" y="285" width="32" height="29"/>
+                            <button opaque="NO" tag="256" contentMode="scaleToFill" restorationIdentifier="256" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pBz-Mp-jr2" userLabel="StartButton">
+                                <rect key="frame" x="255" y="255" width="90" height="90"/>
                                 <color key="backgroundColor" red="1" green="0.13692986539059515" blue="0.16088501006378009" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="pBz-Mp-jr2" secondAttribute="height" multiplier="1:1" id="hLN-0g-L8S"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <state key="normal" title="Start">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -41,9 +52,11 @@
                         <rect key="contentStretch" x="0.0" y="0.0" width="0.0" height="0.0"/>
                         <constraints>
                             <constraint firstItem="QCz-mC-Gnq" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.8" id="IGh-wT-Wb6"/>
+                            <constraint firstItem="QCz-mC-Gnq" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="IkW-az-kGE"/>
                             <constraint firstItem="pBz-Mp-jr2" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Qcm-Op-RXd"/>
                             <constraint firstItem="QCz-mC-Gnq" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Zb1-Rb-4gg"/>
                             <constraint firstItem="pBz-Mp-jr2" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="ad0-ek-Avv"/>
+                            <constraint firstItem="pBz-Mp-jr2" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.15" id="gIX-xp-7JB"/>
                             <constraint firstItem="QCz-mC-Gnq" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="jBR-kh-a6w"/>
                         </constraints>
                     </view>
@@ -64,7 +77,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="topRight" translatesAutoresizingMaskIntoConstraints="NO" id="VUO-5C-VbS" userLabel="ControlPanelView">
+                            <view tag="310" contentMode="topRight" translatesAutoresizingMaskIntoConstraints="NO" id="VUO-5C-VbS" userLabel="ControlPanelView">
                                 <rect key="frame" x="510" y="0.0" width="90" height="600"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" tag="200" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="top_frame" translatesAutoresizingMaskIntoConstraints="NO" id="99C-II-Pv3">
@@ -80,7 +93,7 @@
                                         </constraints>
                                     </imageView>
                                     <button opaque="NO" tag="302" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1fX-GE-ekT" userLabel="ButtonC">
-                                        <rect key="frame" x="23" y="328" width="45" height="45"/>
+                                        <rect key="frame" x="23" y="327" width="45" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="1fX-GE-ekT" secondAttribute="height" multiplier="1:1" id="0OV-wU-sNo"/>
                                         </constraints>
@@ -92,11 +105,11 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="300" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SUD-7B-E4g" userLabel="ButtonA">
-                                        <rect key="frame" x="23" y="228" width="45" height="45"/>
+                                        <rect key="frame" x="23" y="227" width="45" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="SUD-7B-E4g" secondAttribute="height" multiplier="1:1" id="ZQc-vi-OaX"/>
                                         </constraints>
-                                        <state key="normal" title="Button" image="button_a_offf">
+                                        <state key="normal" title="Button" image="button_a_off">
                                             <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                         </state>
                                         <connections>
@@ -104,7 +117,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" tag="301" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dr1-Ii-flB" userLabel="ButtonB">
-                                        <rect key="frame" x="23" y="278" width="45" height="45"/>
+                                        <rect key="frame" x="23" y="277" width="45" height="45"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="dr1-Ii-flB" secondAttribute="height" multiplier="1:1" id="lnG-TZ-bF4"/>
                                         </constraints>
@@ -142,34 +155,60 @@
                                     <segue destination="c5p-Az-X1e" kind="embed" id="lA5-8V-zuD"/>
                                 </connections>
                             </containerView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="inner_ring_t" translatesAutoresizingMaskIntoConstraints="NO" id="VWn-xe-bnQ" userLabel="InnerRingImageView">
+                            <imageView userInteractionEnabled="NO" tag="565" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="inner_ring_t" translatesAutoresizingMaskIntoConstraints="NO" id="VWn-xe-bnQ" userLabel="InnerRingImageView">
                                 <rect key="frame" x="15" y="60" width="480" height="480"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="VWn-xe-bnQ" secondAttribute="height" multiplier="1:1" id="Bc5-vE-ZSQ"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CYLINDER" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uSO-tg-hxp" userLabel="LeftLabel">
+                                <rect key="frame" x="5" y="558" width="175" height="37"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Enochian" family="Enochian" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="PYRAMID" textAlignment="right" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QWB-tI-dO5" userLabel="RightLabel">
+                                <rect key="frame" x="351" y="558" width="154" height="37"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" name="Enochian" family="Enochian" pointSize="30"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="outer_ring_t" translatesAutoresizingMaskIntoConstraints="NO" id="gV0-iU-2no" userLabel="OuterRingImageView">
                                 <rect key="frame" x="15" y="60" width="480" height="480"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="gV0-iU-2no" secondAttribute="height" multiplier="1:1" id="Kpe-1J-qgB"/>
                                 </constraints>
                             </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" tag="320" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HUMAN" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ofc-pZ-m1A" userLabel="SpeciesLabel">
+                                <rect key="frame" x="196" y="281" width="118" height="37"/>
+                                <fontDescription key="fontDescription" name="Enochian" family="Enochian" pointSize="30"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="QWB-tI-dO5" firstAttribute="trailing" secondItem="iTi-DK-t9L" secondAttribute="trailing" constant="-5" id="3Gw-AJ-Z5O"/>
                             <constraint firstItem="iTi-DK-t9L" firstAttribute="height" secondItem="D29-Dj-KTi" secondAttribute="height" id="4in-Oj-7rm"/>
+                            <constraint firstItem="uSO-tg-hxp" firstAttribute="bottom" secondItem="iTi-DK-t9L" secondAttribute="bottom" constant="-5" id="4t7-aZ-hax"/>
                             <constraint firstItem="iTi-DK-t9L" firstAttribute="leading" secondItem="D29-Dj-KTi" secondAttribute="leading" id="4yT-lR-2lo"/>
                             <constraint firstItem="VWn-xe-bnQ" firstAttribute="height" secondItem="iTi-DK-t9L" secondAttribute="height" multiplier="0.8" id="8Nc-0e-qQk"/>
                             <constraint firstItem="VUO-5C-VbS" firstAttribute="height" secondItem="D29-Dj-KTi" secondAttribute="height" id="CgZ-29-zoi"/>
+                            <constraint firstItem="Ofc-pZ-m1A" firstAttribute="centerY" secondItem="iTi-DK-t9L" secondAttribute="centerY" id="DWG-Oi-13q"/>
+                            <constraint firstItem="uSO-tg-hxp" firstAttribute="leading" secondItem="iTi-DK-t9L" secondAttribute="leading" constant="5" id="ELS-6L-0LL"/>
                             <constraint firstItem="VUO-5C-VbS" firstAttribute="top" secondItem="D29-Dj-KTi" secondAttribute="top" id="GtW-ia-Hzw"/>
                             <constraint firstItem="iTi-DK-t9L" firstAttribute="top" secondItem="D29-Dj-KTi" secondAttribute="top" id="JQS-7r-svh"/>
                             <constraint firstItem="VWn-xe-bnQ" firstAttribute="centerY" secondItem="iTi-DK-t9L" secondAttribute="centerY" id="N4V-ll-QOQ"/>
                             <constraint firstItem="VUO-5C-VbS" firstAttribute="width" secondItem="D29-Dj-KTi" secondAttribute="width" multiplier="0.15" id="UBH-xN-KoT"/>
                             <constraint firstItem="iTi-DK-t9L" firstAttribute="width" secondItem="D29-Dj-KTi" secondAttribute="width" multiplier="0.85" id="aSA-LF-OU1"/>
                             <constraint firstItem="VWn-xe-bnQ" firstAttribute="centerX" secondItem="iTi-DK-t9L" secondAttribute="centerX" id="hgh-tg-lDf"/>
+                            <constraint firstItem="QWB-tI-dO5" firstAttribute="bottom" secondItem="iTi-DK-t9L" secondAttribute="bottom" constant="-5" id="lkI-ku-OXK"/>
                             <constraint firstItem="gV0-iU-2no" firstAttribute="centerX" secondItem="iTi-DK-t9L" secondAttribute="centerX" id="nFE-Gf-Bxm"/>
                             <constraint firstAttribute="trailing" secondItem="VUO-5C-VbS" secondAttribute="trailing" id="oCz-vX-Zyg"/>
                             <constraint firstItem="gV0-iU-2no" firstAttribute="height" secondItem="iTi-DK-t9L" secondAttribute="height" multiplier="0.8" id="u1i-6U-s3y"/>
+                            <constraint firstItem="Ofc-pZ-m1A" firstAttribute="centerX" secondItem="iTi-DK-t9L" secondAttribute="centerX" id="yZ7-oS-ofQ"/>
                             <constraint firstItem="gV0-iU-2no" firstAttribute="centerY" secondItem="iTi-DK-t9L" secondAttribute="centerY" id="zJH-YZ-6DJ"/>
                         </constraints>
                     </view>
@@ -200,7 +239,7 @@
     </scenes>
     <resources>
         <image name="bottom_frame" width="300" height="296"/>
-        <image name="button_a_offf" width="250" height="250"/>
+        <image name="button_a_off" width="250" height="250"/>
         <image name="button_b_off" width="250" height="250"/>
         <image name="button_c_off" width="250" height="250"/>
         <image name="inner_ring_t" width="800" height="800"/>

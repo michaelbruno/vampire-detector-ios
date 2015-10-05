@@ -9,7 +9,9 @@
 @import UIKit;
 
 
-const float focusRate = 5.0;
+extern const float FOCUSRATE;
+extern const float VIDEOW;
+extern const float VIDEOH;
 
 @interface ApplicationControl : NSObject {
     

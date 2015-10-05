@@ -10,6 +10,10 @@
 
 @implementation ApplicationControl
 
+const float FOCUSRATE = 5.0f;
+const float VIDEOW = 1280.0f;
+const float VIDEOH = 720.0;
+
 #pragma mark Singleton Methods
 - (id)init{
     
@@ -55,15 +59,17 @@
     float aspect = (float)swidth/(float)sheight;
     multi = (float)sheight/(float)cheight;
     
+    #ifdef DEBUG
     NSLog(@"Screen aspect is %f, width:%d x height:%d", aspect, swidth, sheight);
-    
-   // displayBounds = CGRectMake(0,0,(multi * cwidth),sheight);
+    #endif
+
     displayBounds[0] = 0;
     displayBounds[1] = 0;
     displayBounds[2] = multi * cwidth;
     displayBounds[3] = sheight;
     
-    NSLog(@"returning self!");
+    lastx = swidth/2;
+    lasty = sheight/2;
     
     return self;
 }

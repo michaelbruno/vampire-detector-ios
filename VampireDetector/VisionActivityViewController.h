@@ -8,6 +8,7 @@
 
 #import "ApplicationControl.h"
 @import AVFoundation;
+@import UIKit;
 
 @interface VisionActivityViewController : UIViewController{
     
@@ -18,9 +19,7 @@
 
 -(IBAction)lightModeClicked:(UIButton *)sender;
 
-
 -(IBAction)colorModeClicked:(UIButton *)sender;
-
 
 -(IBAction)effectModeClicked:(UIButton *)sender;
 

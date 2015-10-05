@@ -10,6 +10,7 @@
 @import GLKit;
 @import AVFoundation;
 @import UIKit;
+@import CoreText;
 
 @interface VisionViewController : GLKViewController
 <AVCaptureVideoDataOutputSampleBufferDelegate>{
@@ -26,12 +27,15 @@
     CIFaceFeature *face;
     CALayer *recticleLayer;
     CGRect displayBounds;
-    CGColorSpaceRef colorSpace; 
-    int frameNumber;
+    CGColorSpaceRef colorSpace;
+    CFAttributedStringRef displayString;
+    float frameNumber;
+    float detectedFrames;
     
 }
 
 -(CIImage *)processFrame:(CIImage *)image;
 
+-(BOOL)shouldDisplayLabel;
 
 @end

@@ -16,36 +16,116 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    #ifdef DEBUG
     NSLog(@"VisionActivityViewController viewDidLoad()");
+    #endif
     
     ac = [ApplicationControl getInstance];
     
+    /*
+    UIImageView *orbiculusRing = (UIImageView *)[self.view viewWithTag:565];
+    
+    if(orbiculusRing == nil){
+        NSLog(@"HO!");
+    }
+    NSLog(@"height at %f",orbiculusRing.frame.size.height);
+    */
+    
+    UIButton *buttonA = (UIButton *)[self.view viewWithTag:300];
+    [buttonA setImage:[UIImage imageNamed:@"button_a_on"] forState:UIControlStateSelected];
+    [buttonA setImage:[UIImage imageNamed:@"button_a_off"] forState:UIControlStateNormal];
+    
+    UIButton *buttonB = (UIButton *)[self.view viewWithTag:301];
+    [buttonB setImage:[UIImage imageNamed:@"button_b_on"] forState:UIControlStateSelected];
+    [buttonB setImage:[UIImage imageNamed:@"button_b_off"] forState:UIControlStateNormal];
+    
+    UIButton *buttonC = (UIButton *)[self.view viewWithTag:302];
+    [buttonC setImage:[UIImage imageNamed:@"button_c_on"] forState:UIControlStateSelected];
+    [buttonC setImage:[UIImage imageNamed:@"button_c_off"] forState:UIControlStateNormal];
+    
+    UIView *controlPanel = (UIView *)[self.view viewWithTag:310];
+    controlPanel.layer.borderColor = [UIColor redColor].CGColor;
+    controlPanel.layer.borderWidth = 2.0f;
+    
+    UILabel *speciesLabel = (UILabel *)[self.view viewWithTag:320];
+    speciesLabel.text = @"";
+
 }
+
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    UIImageView *orbiculusRing = (UIImageView *)[self.view viewWithTag:565];
+    CGAffineTransform spin = CGAffineTransformRotate(orbiculusRing.transform, M_PI_2);
+    
+    [UIView animateWithDuration:10.0f delay:0.0 options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
+                     animations:^{
+                         orbiculusRing.transform = spin;
+                     }
+                     completion:nil];
+    
+    //UILabel *speciesLabel = (UILabel *)[self.view viewWithTag:320];
+    //speciesLabel.hidden = YES;
+}
+
 
 
 -(IBAction)lightModeClicked:(UIButton *)sender{
     
-    if(ac->lightOn){
-        ac->lightOn = false;
-    }else{
-        ac->lightOn = true;
+    AVCaptureDevice *videoDevice;
+    NSArray *devices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
+    for (AVCaptureDevice *device in devices) {
+        if ([device position] == AVCaptureDevicePositionBack) {
+            videoDevice = device;
+        }
     }
     
+    if (videoDevice.hasTorch){
+
+        [videoDevice lockForConfiguration:nil];
+
+        if (videoDevice.torchActive){
+            videoDevice.torchMode = AVCaptureTorchModeOff;
+        } else {
+            videoDevice.torchMode = AVCaptureTorchModeOn;
+        }
+        [videoDevice unlockForConfiguration];
+    }
+    
+    sender.selected = !sender.selected;
+    
+    #ifdef DEBUG
     NSLog(@"lightModeClicked");
+    #endif
     
 }
 
-
 -(IBAction)colorModeClicked:(UIButton *)sender{
     
+    if(ac->colorMode == 1){
+        ac->colorMode = 2;
+    }else if(ac->colorMode == 2){
+        ac->colorMode = 1;
+    }
+    
+    sender.selected = !sender.selected;
+    
+    #ifdef DEBUG
     NSLog(@"colorModeClicked");
+    #endif
     
 }
 
 
 -(IBAction)effectModeClicked:(UIButton *)sender{
     
+    ac->effectMode = !(ac->effectMode);
+    
+    sender.selected = !sender.selected;
+
+    #ifdef DEBUG
     NSLog(@"effectModeClicked");
+    #endif
     
 }
 
@@ -65,35 +145,4 @@
     return NO;
 }
 
-
-/*
- public void lightButtonClick(View v) {
- 
- ac.lightOn = ((ToggleButton) v).isChecked();
- processor.resetCamera();
- 
- }
- 
- 
- public void colorModeClick(View v) {
- 
- boolean active = ((ToggleButton) v).isChecked();
- 
- if (active) {
- ac.colorMode = 2;
- 
- } else {
- ac.colorMode = 1;
- }
- processor.resetCamera();
- 
- }
- 
- public void effectModeClick(View v) {
- 
- ac.effectMode = ((ToggleButton) v).isChecked();
- processor.resetCamera();
- 
- }
- */
 @end

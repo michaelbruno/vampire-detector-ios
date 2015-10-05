@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "E88FD37D2A173E42E810E8CBD5348B5FA192D887",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "E88FD37D2A173E42E810E8CBD5348B5FA192D887" : 0,
+    "2319BE6CCC4BD2922A52E4213314A8DFAF00EA36" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "AF53FA79-50F3-470F-B325-4B5E195D723E",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "E88FD37D2A173E42E810E8CBD5348B5FA192D887" : "VampireDetector",
+    "2319BE6CCC4BD2922A52E4213314A8DFAF00EA36" : "androidws\/vampire-detector"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "VampireDetector",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "VampireDetector.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:michaelbruno\/vampire-detector.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "2319BE6CCC4BD2922A52E4213314A8DFAF00EA36"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:michaelbruno\/vampire-detector-ios.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "E88FD37D2A173E42E810E8CBD5348B5FA192D887"
+    }
+  ]
+}
