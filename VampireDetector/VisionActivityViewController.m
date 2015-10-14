@@ -16,6 +16,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    continueAnimation = true;
+    
     #ifdef DEBUG
     NSLog(@"VisionActivityViewController viewDidLoad()");
     #endif
@@ -44,7 +46,10 @@
     [buttonC setImage:[UIImage imageNamed:@"button_c_off"] forState:UIControlStateNormal];
     
     UIView *controlPanel = (UIView *)[self.view viewWithTag:310];
-    controlPanel.layer.borderColor = [UIColor redColor].CGColor;
+    controlPanel.layer.borderColor = [UIColor colorWithRed:200.0f/255.0f
+                                                     green:0.0f/255.0f
+                                                      blue:0.0f/255.0f
+                                                     alpha:1.0f].CGColor;
     controlPanel.layer.borderWidth = 2.0f;
     
     UILabel *speciesLabel = (UILabel *)[self.view viewWithTag:320];
@@ -55,18 +60,37 @@
 - (void)viewDidAppear:(BOOL)animated{
     [super viewDidAppear:animated];
     
-    UIImageView *orbiculusRing = (UIImageView *)[self.view viewWithTag:565];
-    CGAffineTransform spin = CGAffineTransformRotate(orbiculusRing.transform, M_PI_2);
-    
-    [UIView animateWithDuration:10.0f delay:0.0 options:UIViewAnimationOptionCurveLinear | UIViewAnimationOptionRepeat
-                     animations:^{
-                         orbiculusRing.transform = spin;
-                     }
-                     completion:nil];
+    [self infiniteSpin];
     
     //UILabel *speciesLabel = (UILabel *)[self.view viewWithTag:320];
     //speciesLabel.hidden = YES;
 }
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    continueAnimation = false;
+    
+}
+
+-(void)infiniteSpin{
+    
+    UIImageView *orbiculusRing = (UIImageView *)[self.view viewWithTag:565];
+
+    CGAffineTransform spin = CGAffineTransformRotate(orbiculusRing.transform, M_PI_2); // (M_PI_2);
+    
+    [UIView animateWithDuration:5.0f delay:0.0 options:UIViewAnimationOptionCurveLinear  //| UIViewAnimationOptionRepeat
+                     animations:^{
+                         orbiculusRing.transform = spin;
+                     }
+                     completion:^(BOOL finished) {
+                         if (finished && continueAnimation){// && !CGAffineTransformEqualToTransform(orbiculusRing.transform, CGAffineTransformIdentity)) {
+                             [self infiniteSpin];
+                         }
+                     }];
+    
+}
+
+
 
 
 
@@ -141,8 +165,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return UIInterfaceOrientationMaskLandscape;
+}
+
 - (BOOL)shouldAutorotate{
     return NO;
 }
 
+- (BOOL)prefersStatusBarHidden{
+    return YES;
+}
 @end

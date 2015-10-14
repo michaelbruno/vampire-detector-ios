@@ -15,12 +15,12 @@ extern const float VIDEOH;
 
 @interface ApplicationControl : NSObject {
     
-@public int *pixels;
-@public int *detectionPixels;
+//@public int *pixels;
+//@public int *detectionPixels;
 @public int cwidth;;
 @public int cheight;
-@public int swidth;
-@public int sheight;
+@public float swidth;
+@public float sheight;
 @public int colorMode;
 @public bool effectMode;
 @public int displayState;

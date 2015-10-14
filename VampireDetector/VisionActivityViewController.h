@@ -13,6 +13,7 @@
 @interface VisionActivityViewController : UIViewController{
     
     ApplicationControl *ac;
+    bool continueAnimation;
     
 }
 
@@ -23,5 +24,6 @@
 
 -(IBAction)effectModeClicked:(UIButton *)sender;
 
+-(void)infiniteSpin;
 
 @end

@@ -29,6 +29,7 @@
     CGRect displayBounds;
     CGColorSpaceRef colorSpace;
     CFAttributedStringRef displayString;
+    bool noCamera;
     float frameNumber;
     float detectedFrames;
     
@@ -37,5 +38,7 @@
 -(CIImage *)processFrame:(CIImage *)image;
 
 -(BOOL)shouldDisplayLabel;
+
+-(void)drawTestImage;
 
 @end

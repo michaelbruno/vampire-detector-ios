@@ -19,6 +19,7 @@
     
     frameNumber = 0.0;
     detectedFrames = 0.0;
+    noCamera = false;
     
     ac = [ApplicationControl getInstance];
     
@@ -26,7 +27,9 @@
     
     //displayBounds = CGRectMake(0,0,ac->displayBounds[2],ac->displayBounds[3]);
     
-    displayBounds = CGRectMake(0,0,VIDEOW,VIDEOH);
+
+    
+    
     
     colorSpace = CGColorSpaceCreateDeviceRGB();
     
@@ -43,13 +46,21 @@
     cameraView.context = eaglContext;
     cameraView.drawableDepthFormat = GLKViewDrawableDepthFormat24;
     cameraView.contentMode = UIViewContentModeScaleAspectFit;
-
+    
+    if(ac->sheight > VIDEOH){
+        float upscale = ac->sheight/VIDEOH;
+        displayBounds = CGRectMake(0,0, (VIDEOW * upscale), ac->sheight);
+    }else{
+        displayBounds = CGRectMake(0,0,VIDEOW,VIDEOH);
+    }
     
     #ifdef DEBUG
     NSLog(@"bounds w: %f h: %f",cameraView.bounds.size.width, cameraView.bounds.size.height);
     #endif
     
     [EAGLContext setCurrentContext:eaglContext];
+    
+    
     
     ctx = CGBitmapContextCreate(NULL,
                                 VIDEOW,
@@ -63,6 +74,7 @@
     
     displayString = [self createDisplayString:CFSTR("HUMAN")];
     
+
     captureSession = [AVCaptureSession new];
     
     // make sure back camera is used
@@ -73,18 +85,6 @@
             videoDevice = device;
         }
     }
-    
-    /*
-    for ( AVCaptureDeviceFormat *format in [videoDevice formats] ) {
-        NSLog(@"description: %@",format.description);
-        NSLog(@"%@", format.videoSupportedFrameRateRanges);
-     
-        
-        for (AVFrameRateRange *range in format.videoSupportedFrameRateRanges ) {
-            
-        }
-    }
-     */
     
    // this doesn't seem to work, so mysterious
     [videoDevice lockForConfiguration:nil];
@@ -108,6 +108,7 @@
         #ifdef DEBUG
         NSLog(@"Error %@", error);
         #endif
+        noCamera = true;
     }
     
   
@@ -136,8 +137,40 @@
  
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    [super viewDidAppear:animated];
+    
+    if(noCamera){
+        [self drawTestImage];
+    }
+}
+
+
+-(void)drawTestImage{
+    
+    #ifdef DEBUG
+        NSLog(@"Drawing test image");
+    #endif
+    
+    NSString *filePath = [[NSBundle mainBundle] pathForResource:@"testimage1280x720" ofType:@"jpg"];
+    NSURL *fileNameAndPath = [NSURL fileURLWithPath:filePath];
+    
+    // Load the image as a CIImage
+    CIImage *image = [CIImage imageWithContentsOfURL:fileNameAndPath];
+    
+    image = [self processFrame:image];
+    
+    [coreImageContext drawImage:image inRect:displayBounds fromRect:[image extent] ];
+    
+    //GLuint render_buffer = 0;
+    //glBindRenderbuffer(GL_RENDERBUFFER, render_buffer);
+    //[eaglContext presentRenderbuffer:GL_RENDERBUFFER];
+    
+}
+
 
 -(void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
+
     
     if ([connection isVideoOrientationSupported]){
         [connection setVideoOrientation: AVCaptureVideoOrientationLandscapeLeft];
@@ -251,7 +284,7 @@
             }else if(ac->detectionState < 0){
                 ac->detectionState = 0;
             }
-            NSLog(@"x: %f y: %f", ac->curx, ac->cury);
+            //NSLog(@"x: %f y: %f", ac->curx, ac->cury);
         });
     }
     // apply initial filters
@@ -366,12 +399,12 @@
         
         if((ac->faceyCenter > 140) && (ac->faceyCenter < 580)){
             
-            if((ac->facexCenter > 228) && (ac->facexCenter < 668)){
+            //if((ac->facexCenter > 228) && (ac->facexCenter < 668)){
                 
                 if(ac->dist < 400 && fabs(ac->curx - ac->facexCenter)<10 && fabs(ac->cury - ac->faceyCenter)<10){
                     display = YES;
                 }
-            }
+            //}
         }
     }
     

@@ -18,8 +18,8 @@
 		E41EE0531B7E60CC00A92970 /* ApplicationControl.m in Sources */ = {isa = PBXBuildFile; fileRef = E41EE0521B7E60CC00A92970 /* ApplicationControl.m */; };
 		E41EE0561B7E61F600A92970 /* VisionActivityViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E41EE0551B7E61F600A92970 /* VisionActivityViewController.m */; };
 		E41EE0591B7E624900A92970 /* VisionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E41EE0581B7E624900A92970 /* VisionViewController.m */; };
-		E49E61091BAC4D7F00ED1DA7 /* RecticleUIView.m in Sources */ = {isa = PBXBuildFile; fileRef = E49E61081BAC4D7F00ED1DA7 /* RecticleUIView.m */; };
 		E49E610D1BBC25D400ED1DA7 /* enochian-v7.ttf in Resources */ = {isa = PBXBuildFile; fileRef = E49E610C1BBC25D400ED1DA7 /* enochian-v7.ttf */; };
+		E4A04CAE1BCE0F4600F95E2D /* testimage1280x720.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E4A04CAD1BCE0F4600F95E2D /* testimage1280x720.jpg */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,9 +54,8 @@
 		E41EE0551B7E61F600A92970 /* VisionActivityViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VisionActivityViewController.m; sourceTree = "<group>"; };
 		E41EE0571B7E623700A92970 /* VisionViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VisionViewController.h; sourceTree = "<group>"; };
 		E41EE0581B7E624900A92970 /* VisionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VisionViewController.m; sourceTree = "<group>"; };
-		E49E61071BAC4D6A00ED1DA7 /* RecticleUIView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RecticleUIView.h; sourceTree = "<group>"; };
-		E49E61081BAC4D7F00ED1DA7 /* RecticleUIView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RecticleUIView.m; sourceTree = "<group>"; };
 		E49E610C1BBC25D400ED1DA7 /* enochian-v7.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "enochian-v7.ttf"; path = "../../../androidws/vampire-detector/app/src/main/assets/enochian-v7.ttf"; sourceTree = "<group>"; };
+		E4A04CAD1BCE0F4600F95E2D /* testimage1280x720.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = testimage1280x720.jpg; path = ../../../../Downloads/testimage1280x720.jpg; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,8 +114,6 @@
 				E41EE0551B7E61F600A92970 /* VisionActivityViewController.m */,
 				E41EE0571B7E623700A92970 /* VisionViewController.h */,
 				E41EE0581B7E624900A92970 /* VisionViewController.m */,
-				E49E61071BAC4D6A00ED1DA7 /* RecticleUIView.h */,
-				E49E61081BAC4D7F00ED1DA7 /* RecticleUIView.m */,
 			);
 			path = VampireDetector;
 			sourceTree = "<group>";
@@ -124,6 +121,7 @@
 		E41EE0271B7E5F9000A92970 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				E4A04CAD1BCE0F4600F95E2D /* testimage1280x720.jpg */,
 				E41EE0281B7E5F9000A92970 /* Info.plist */,
 				E41EE0291B7E5F9000A92970 /* main.m */,
 			);
@@ -231,6 +229,7 @@
 				E41EE0331B7E5F9000A92970 /* Main.storyboard in Resources */,
 				E41EE0381B7E5F9000A92970 /* LaunchScreen.xib in Resources */,
 				E49E610D1BBC25D400ED1DA7 /* enochian-v7.ttf in Resources */,
+				E4A04CAE1BCE0F4600F95E2D /* testimage1280x720.jpg in Resources */,
 				E41EE0351B7E5F9000A92970 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -256,7 +255,6 @@
 				E41EE0301B7E5F9000A92970 /* ViewController.m in Sources */,
 				E41EE02D1B7E5F9000A92970 /* AppDelegate.m in Sources */,
 				E41EE02A1B7E5F9000A92970 /* main.m in Sources */,
-				E49E61091BAC4D7F00ED1DA7 /* RecticleUIView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -338,7 +336,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.3;
 				MTL_ENABLE_DEBUG_INFO = YES;
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -394,6 +392,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = VampireDetector/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.apollonarius.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -409,6 +408,7 @@
 				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = VampireDetector/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.apollonarius.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

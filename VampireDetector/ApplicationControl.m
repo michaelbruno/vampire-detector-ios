@@ -46,21 +46,21 @@ const float VIDEOH = 720.0;
     cwidth = 1280;
     cheight = 720;
     
-    pixels = malloc((1280 * 720) * sizeof(int));
-    detectionPixels = malloc((1280 * 720) * sizeof(int));
+    //pixels = malloc((1280 * 720) * sizeof(int));
+    //detectionPixels = malloc((1280 * 720) * sizeof(int));
     
     CGRect screenRect = [[UIScreen mainScreen] bounds];
-    CGFloat screenWidth = screenRect.size.width;
-    CGFloat screenHeight = screenRect.size.height;
+    CGFloat screenWidth = screenRect.size.width * [UIScreen mainScreen].scale;
+    CGFloat screenHeight = screenRect.size.height * [UIScreen mainScreen].scale;
     
-    swidth = (int)screenWidth;
-    sheight = (int)screenHeight;
+    swidth = screenWidth;
+    sheight = screenHeight;
     
-    float aspect = (float)swidth/(float)sheight;
+    float aspect = swidth/sheight;
     multi = (float)sheight/(float)cheight;
     
     #ifdef DEBUG
-    NSLog(@"Screen aspect is %f, width:%d x height:%d", aspect, swidth, sheight);
+    NSLog(@"Screen aspect is %f, width:%f x height:%f", aspect, swidth, sheight);
     #endif
 
     displayBounds[0] = 0;
@@ -85,8 +85,8 @@ const float VIDEOH = 720.0;
 
 - (void)dealloc {
     // Should never be called, but just here for clarity really.
-    free(pixels);
-    free(detectionPixels);
+    //free(pixels);
+    //free(detectionPixels);
 }
 
 @end
